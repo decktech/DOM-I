@@ -39,4 +39,71 @@ const siteContent = { // DO NOT CHANGE THIS OBJECT
   },
 };
 
-console.log('project wired!')
+console.log('project wired!');
+
+const navLinks = document.querySelectorAll("nav a");
+// console.log(navLinks)
+navLinks.forEach(element => element.classList.add("italic"));
+// navLinks[0].textContent = siteContent["nav"]["nav-item-1"];
+const navLinksText = Object.values(siteContent.nav);
+navLinks.forEach((link, idx) => {
+  link.textContent = navLinksText[idx];
+})
+
+const headerImg = document.querySelector("header img");
+headerImg.src = "http://localhost:9000/img/logo.png";
+
+const section1 = document.querySelector(".cta");
+// const h1Section1 = section1.querySelector("h1");
+// h1Section1.textContent = "DOM Is Awesome";
+section1.querySelector("h1").textContent = siteContent.cta["h1"];
+section1.querySelector("button").textContent = siteContent.cta["button"];
+section1.querySelector("img").src ="http://localhost:9000/img/cta.png" 
+
+
+// LONG WAY
+// const section2 = document.querySelector(".main-content");
+// console.log(section2)
+// const mainContentTop = section2.querySelector(".top-content");
+// const topH4s = Array.from(mainContentTop.querySelectorAll("h4"));
+// console.log(topH4s);
+// topH4s[0].classList.add(".topH4-1")
+
+// MORE EFFICIENT
+const mainSectionArr = Object.entries(siteContent["main-content"]);
+// console.log(mainSectionArr);
+const mainSectionH4s = mainSectionArr.filter(element => element[0].includes("-h4"));
+// console.log(mainSectionH4s);
+const Allh4s = document.querySelectorAll(".main-content h4");
+Allh4s.forEach((h4, idx) => {h4.textContent = mainSectionH4s[idx][1]});
+
+const mainSectionPs = mainSectionArr.filter(element => element[0].includes("-content"));
+const allP = document.querySelectorAll(".main-content p");
+allP.forEach((p, idx)=> {p.textContent = mainSectionPs[idx][1]});
+
+document.querySelector(".main-content img").src = "http://localhost:9000/img/accent.png";
+
+
+document.querySelector(".contact h4").textContent = siteContent.contact["contact-h4"];
+
+const contactSectionArr = Object.entries(siteContent.contact);
+console.log(contactSectionArr)
+const contactSectionPs = contactSectionArr.filter(element => !element.includes("Contact"));
+console.log(contactSectionPs);
+document.querySelectorAll(".contact p").forEach((p, idx)=> {p.textContent = contactSectionPs[idx]})
+
+const cpr = document.querySelector("footer a").textContent = siteContent.footer.copyright;
+document.querySelector("footer a").classList.add("bold");
+
+
+
+
+
+
+
+
+
+
+
+
+
